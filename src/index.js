@@ -35,6 +35,25 @@ const removeBookFromMenu = (id) => {
   LI.remove();
 }
 
+const removeAllChildNodes = (parent) => {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+// UI for Delete All Button
+const deleteAllBooks = (() => {
+  const deleteAllBtn = document.querySelector('#deleteBooksBtn');
+
+  deleteAllBtn.addEventListener('click', () => {
+    console.log('DELETE ALL RAN');
+    const mainUL = document.querySelector('.menu-list');
+    removeAllChildNodes(mainUL);
+    myLibrary.clearStorage();
+  });
+
+})();
+
 const updateBooksList = (book) => {
 
   ////// UI //////
@@ -81,9 +100,13 @@ const updateBooksList = (book) => {
   });
   deleteLI.append(deleteA);
 
-
   childUL.append(authorLI, pagesLI, readLI, deleteLI);
   LI.append(A, childUL);
   mainUL.append(LI)
 
+}
+
+// ON RELOAD
+for (let book of myLibrary.library) {
+  updateBooksList(book);
 }

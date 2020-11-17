@@ -16,7 +16,7 @@ const addBookToLibrary= (event) => {
 
   ////// Object //////
   // create new book instance
-  const id = myLibrary.count;
+  const id = myStorage.getItem('count');
   const newBook = BookFactory(id, title.value, author.value, pages.value, read)
   myLibrary.addBookToLibrary(newBook);
 
@@ -28,5 +28,6 @@ const addBookToLibrary= (event) => {
     if (radio.checked) { radio.checked = false}
   }
 
-  updateBooksList(newBook)
+  // Add newBook object to Books Menu
+  updateBooksList(newBook);
 }
