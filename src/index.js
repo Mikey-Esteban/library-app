@@ -1,38 +1,3 @@
-// const addBookToLibrary= (event) => {
-//
-//   alert('i ran')
-//   ////// UI //////
-//   event.preventDefault();
-//   const form = event.target
-//
-//   let title = form.querySelector('input[name=title]');
-//   let author = form.querySelector('input[name=author]');
-//   let pages = form.querySelector('input[name=pages]');
-//   let radios = form.querySelectorAll('input[name=read]');
-//   let read;
-//   for (let radio of radios) {
-//     if (radio.checked) {
-//       radio.value === 'true' ? read = true : read = false
-//     }
-//   }
-//
-//   ////// Object //////
-//   // create new book instance
-//   const id = myLibrary.count;
-//   const newBook = BookFactory(id, title.value, author.value, pages.value, read)
-//   myLibrary.addBookToLibrary(newBook);
-//
-//   ////// UI //////
-//   title.value = ''
-//   author.value = '';
-//   pages.value = '';
-//   for (let radio of radios) {
-//     if (radio.checked) { radio.checked = false}
-//   }
-//
-//   updateBooksList(newBook)
-// }
-
 const addDropdownFunc = (el) => {
   ////// UI //////
   el.classList.add('dropdown')
@@ -43,11 +8,14 @@ const addDropdownFunc = (el) => {
   })
 }
 
-
-const removeBookFromUI = (id) => {
-  const LI = document.querySelector(`[data-id='${id}']`)
-  console.log(LI);
-  LI.remove();
+const createButtonStyles = (button, status) => {
+  if (status) {
+    button.innerText = 'Read';
+    button.classList.add('button', 'is-primary', 'is-small')
+  } else {
+    button.innerText = 'Unread'
+    button.classList.add('button', 'is-danger', 'is-small')
+  }
 }
 
 const handleReadButtonChange = (button) => {
@@ -62,72 +30,60 @@ const handleReadButtonChange = (button) => {
   }
 }
 
+const removeBookFromMenu = (id) => {
+  const LI = document.querySelector(`[data-id='${id}']`)
+  LI.remove();
+}
+
 const updateBooksList = (book) => {
 
   ////// UI //////
   const mainUL = document.querySelector('.menu-list');
 
-  // add DOM elements
-  // parent LI
+  // Parent LI of book title / anchor that holds book info
   const LI = document.createElement('LI');
   LI.setAttribute('data-id', book.id)
   const A = document.createElement('A');
+  A.innerText = book.title;
+  addDropdownFunc(A);
 
-  // child UL holding book info
+  // Child UL holding book info
   const childUL = document.createElement('UL');
   childUL.classList.add('hidden');
 
   const authorLI = document.createElement('LI');
   const authorA = document.createElement('A');
+  authorA.innerText = `Author: ${book.author}`;
   authorLI.append(authorA);
 
   const pagesLI = document.createElement('LI');
   const pagesA = document.createElement('A');
+  pagesA.innerText = `Pages: ${book.pages}`;
   pagesLI.append(pagesA);
 
   const readLI = document.createElement('LI');
   const readA = document.createElement('A');
   const readBUTTON = document.createElement('BUTTON');
-  readLI.append(readA);
+  createButtonStyles(readBUTTON, book.read);
+  readBUTTON.addEventListener('click', () => {
+    handleReadButtonChange(readBUTTON);
+    myLibrary.editBookReadStatus(book);
+  });
   readA.append(readBUTTON);
+  readLI.append(readA);
 
   const deleteLI = document.createElement('LI');
   const deleteA = document.createElement('A');
-  deleteLI.append(deleteA);
-  deleteLI.classList.add('delete')
+  deleteLI.classList.add('delete');
   deleteLI.addEventListener('click', () => {
     myLibrary.removeBookFromLibrary(book, book.id);
-    removeBookFromUI(book.id)
-  })
+    removeBookFromMenu(book.id)
+  });
+  deleteLI.append(deleteA);
 
-
-  authorA.innerText = `Author: ${book.author}`
-  pagesA.innerText = `Pages: ${book.pages}`
-  if (book.read === true) {
-    readBUTTON.innerText = 'Read';
-    readBUTTON.classList.add('button', 'is-primary', 'is-small')
-    readBUTTON.addEventListener('click', () => {
-      handleReadButtonChange(readBUTTON);
-      myLibrary.editBookReadStatus(book);
-    })
-  } else {
-    readBUTTON.innerText = 'Unread'
-    readBUTTON.classList.add('button', 'is-danger', 'is-small')
-    readBUTTON.addEventListener('click', () => {
-      handleReadButtonChange(readBUTTON);
-      editBookReadStatus(book);
-    })
-  }
-  // readBUTTON.innerText = `Read: ${book.read}`
-  deleteA.innerText = 'Delete'
 
   childUL.append(authorLI, pagesLI, readLI, deleteLI);
-
-  A.innerText = book.title
   LI.append(A, childUL);
-
-  addDropdownFunc(A);
-
   mainUL.append(LI)
 
 }

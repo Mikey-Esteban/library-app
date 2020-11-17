@@ -1,6 +1,4 @@
 const addBookToLibrary= (event) => {
-
-  alert('i ran')
   ////// UI //////
   event.preventDefault();
   const form = event.target
