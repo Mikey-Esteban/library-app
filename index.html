@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Library</title>
+
+  <!-- Bulma Styling -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="section">
+    <div class="columns is-desktop">
+      <div class="column is-one-fifth">
+        <h1 class="title">
+          Hello World
+        </h1>
+      </div>
+
+      <div class="column">
+        <aside class="menu">
+          <p class="menu-label">
+              Books
+          </p>
+          <ul class="menu-list">
+            <!-- Books Array goes here -->
+          </ul>
+        </aside>
+      </div>
+
+      <div class="column">
+        <div class="box">
+
+          <form onsubmit="return addBookToLibrary(event)">
+            <div class="field">
+              <label class="label">Title</label>
+              <div class="control has-icons-left">
+                <input class="input" type="text" name="title" placeholder="Flowers for Algernon" required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-heading"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Author</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input is-success" type="text" name="author" placeholder="Text input" required>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </div>
+              <p class="help is-success">This username is available</p>
+            </div>
+
+            <div class="field">
+              <label class="label">Pages</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input is-danger" type="text" name="pages" placeholder="250" value="">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-book"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </span>
+              </div>
+              <p class="help is-danger">This email is invalid</p>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <label class="label">Read</label>
+                <label class="radio">
+                  <input type="radio" name="read" value="true">
+                  Yes
+                </label>
+                <label class="radio">
+                  <input type="radio" name="read" value="false">
+                  No
+                </label>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <input type="submit" value="Add book!" id="submitButton" class="button is-link">
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="src/myLibrary.js" charset="utf-8"></script>
+  <script src="src/bookFactory.js" charset="utf-8"></script>
+  <script src="src/index.js" charset="utf-8"></script>
+</body>
+</html>
