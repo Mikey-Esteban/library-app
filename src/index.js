@@ -1,40 +1,37 @@
-const addBookToLibrary = (event) => {
-
-  ////// UI //////
-  event.preventDefault();
-  const form = event.target
-
-  let title = form.querySelector('input[name=title]');
-  let author = form.querySelector('input[name=author]');
-  let pages = form.querySelector('input[name=pages]');
-  let radios = form.querySelectorAll('input[name=read]');
-  let read;
-  for (let radio of radios) {
-    if (radio.checked) {
-      radio.value === 'true' ? read = true : read = false
-    }
-  }
-
-  ////// Object //////
-  // const id = count - -
-  const id = myLibrary.count;
-  const newBook = BookFactory(id, title.value, author.value, pages.value, read)
-  myLibrary.addBookToLibrary(newBook);
-  // count++; - -
-  // myLibrary.push(newBook) - -
-
-  ////// UI //////
-  console.log(title)
-  title.value = ''
-  author.value = '';
-  pages.value = '';
-  for (let radio of radios) {
-    if (radio.checked) { radio.checked = false}
-  }
-
-  // updateBooksList() - -
-  updateBooksList(newBook)
-}
+// const addBookToLibrary= (event) => {
+//
+//   alert('i ran')
+//   ////// UI //////
+//   event.preventDefault();
+//   const form = event.target
+//
+//   let title = form.querySelector('input[name=title]');
+//   let author = form.querySelector('input[name=author]');
+//   let pages = form.querySelector('input[name=pages]');
+//   let radios = form.querySelectorAll('input[name=read]');
+//   let read;
+//   for (let radio of radios) {
+//     if (radio.checked) {
+//       radio.value === 'true' ? read = true : read = false
+//     }
+//   }
+//
+//   ////// Object //////
+//   // create new book instance
+//   const id = myLibrary.count;
+//   const newBook = BookFactory(id, title.value, author.value, pages.value, read)
+//   myLibrary.addBookToLibrary(newBook);
+//
+//   ////// UI //////
+//   title.value = ''
+//   author.value = '';
+//   pages.value = '';
+//   for (let radio of radios) {
+//     if (radio.checked) { radio.checked = false}
+//   }
+//
+//   updateBooksList(newBook)
+// }
 
 const addDropdownFunc = (el) => {
   ////// UI //////
@@ -79,17 +76,21 @@ const updateBooksList = (book) => {
   // child UL holding book info
   const childUL = document.createElement('UL');
   childUL.classList.add('hidden');
+
   const authorLI = document.createElement('LI');
   const authorA = document.createElement('A');
   authorLI.append(authorA);
+
   const pagesLI = document.createElement('LI');
   const pagesA = document.createElement('A');
   pagesLI.append(pagesA);
+
   const readLI = document.createElement('LI');
   const readA = document.createElement('A');
   const readBUTTON = document.createElement('BUTTON');
   readLI.append(readA);
   readA.append(readBUTTON);
+
   const deleteLI = document.createElement('LI');
   const deleteA = document.createElement('A');
   deleteLI.append(deleteA);

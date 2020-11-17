@@ -17,8 +17,9 @@
     <div class="columns is-desktop">
       <div class="column is-one-fifth">
         <h1 class="title">
-          Hello World
+          Hello World !
         </h1>
+        <p> Create a Book with the form on the right, check out your books on the Menu</p>
       </div>
 
       <div class="column">
@@ -48,30 +49,22 @@
 
             <div class="field">
               <label class="label">Author</label>
-              <div class="control has-icons-left has-icons-right">
-                <input class="input is-success" type="text" name="author" placeholder="Text input" required>
+              <div class="control has-icons-left">
+                <input class="input" type="text" name="author" placeholder="Daniel Keyes" required>
                 <span class="icon is-small is-left">
                   <i class="fas fa-user"></i>
                 </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-check"></i>
-                </span>
               </div>
-              <p class="help is-success">This username is available</p>
             </div>
 
             <div class="field">
               <label class="label">Pages</label>
-              <div class="control has-icons-left has-icons-right">
-                <input class="input is-danger" type="text" name="pages" placeholder="250" value="">
+              <div class="control has-icons-left">
+                <input class="input" type="text" name="pages" placeholder="250" value="">
                 <span class="icon is-small is-left">
                   <i class="fas fa-book"></i>
                 </span>
-                <span class="icon is-small is-right">
-                  <i class="fas fa-exclamation-triangle"></i>
-                </span>
               </div>
-              <p class="help is-danger">This email is invalid</p>
             </div>
 
             <div class="field">
@@ -103,6 +96,7 @@
 
   <script src="src/myLibrary.js" charset="utf-8"></script>
   <script src="src/bookFactory.js" charset="utf-8"></script>
+  <script src="src/formHandler.js" charset="utf-8"></script>
   <script src="src/index.js" charset="utf-8"></script>
 </body>
 </html>
